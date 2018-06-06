@@ -2,7 +2,7 @@ export = phina
 export as namespace phina
 
 declare namespace phina {
-    
+
     interface CreateClassParams {
         superClass?: Function
         init?: Function
@@ -1411,7 +1411,7 @@ declare namespace phina {
             fitScreen(isEver: boolean): void
             clear(x: number, y: number, width: number, height: number): this
             clearColor(fillStyle: string, x: number, y: number, width: number, height: number): this
-            biginPath(): this
+            beginPath(): this
             closePath(): this
             moveTo(x: number, y: number): this
             lineTo(x: number, y: number): this
