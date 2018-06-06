@@ -2,7 +2,7 @@ export = phina
 export as namespace phina
 
 declare namespace phina {
-    
+
     interface CreateClassParams {
         superClass?: Function
         init?: Function
@@ -1389,7 +1389,7 @@ declare namespace phina {
             //accessors
             width: number
             height: number
-            fillStyle: number
+            fillStyle: number|CanvasGradient
             strokeStyle: number
             globalAlpha: number
             globalCompositeOperation: string
