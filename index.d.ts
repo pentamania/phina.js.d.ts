@@ -1134,7 +1134,7 @@ declare namespace phina {
             children: Element[]
             awake: boolean
 
-            update?(): void
+            update?(app: display.DomApp): void
 
             addChild(child: Element): Element
             addChildTo(parent: Element): this
@@ -1260,6 +1260,7 @@ declare namespace phina {
     namespace accessory {
 
         interface Accessory extends util.EventDispatcher {
+            target?: app.Element
             setTarget(target: app.Element): this
             getTarget(): void | app.Element
             isAttached(): boolean
@@ -1833,8 +1834,8 @@ declare namespace phina {
             touchList: input.TouchList
             keyboard: input.KeyBoard
             accelerometer: input.Accelerometer
-            pointer: Touch
-            pointers: Touch[]
+            pointer: input.Touch
+            pointers: input.Touch[]
         }
         interface DomAppStatic {
             new(options: DomAppOptions): DomApp
@@ -1843,6 +1844,8 @@ declare namespace phina {
         var DomApp: DomAppStatic
 
         interface CanvasAppOptions extends Partial<DomAppOptions> {
+            width?: number
+            height?: number
             append?: boolean
             fit?: boolean
             pixelated?: boolean
@@ -2036,8 +2039,8 @@ declare namespace phina {
             className: string
             label: string | number
             nextLabel: string | number
-            arguments: {}
-            nextArguments: {}
+            arguments?: {}
+            nextArguments?: {}
         }
         interface ManagerScene extends app.Scene {
             setScene(scenes: ManagerSceneData[]): this
@@ -2212,7 +2215,7 @@ declare global {
 
         most(func?: (elm: T, i: number, self: this) => T, self?: {}): { max: T, min: T }
     }
-    interface Arrayvarructor {
+    interface ArrayConstructor {
         range(range: number): number[]
         range(start: number, end: number, step?: number): number[]
         of(...args: any[]): any[]
