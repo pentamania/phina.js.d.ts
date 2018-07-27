@@ -1135,7 +1135,7 @@ declare namespace phina {
             children: Element[]
             awake: boolean
 
-            update?(app: display.DomApp): void
+            update?(): void
 
             addChild(child: Element): Element
             addChildTo(parent: Element): this
@@ -1261,7 +1261,6 @@ declare namespace phina {
     namespace accessory {
 
         interface Accessory extends util.EventDispatcher {
-            target?: app.Element
             setTarget(target: app.Element): this
             getTarget(): void | app.Element
             isAttached(): boolean
@@ -1391,8 +1390,8 @@ declare namespace phina {
             //accessors
             width: number
             height: number
-            fillStyle: number
-            strokeStyle: number
+            fillStyle: string | CanvasGradient | CanvasPattern
+            strokeStyle: string | CanvasGradient | CanvasPattern
             globalAlpha: number
             globalCompositeOperation: string
             shadowBlur: number
@@ -1412,7 +1411,7 @@ declare namespace phina {
             setSizeToScreen(): void
             fitScreen(isEver?: boolean): void
             clear(x?: number, y?: number, width?: number, height?: number): this
-            clearColor(fillStyle: string, x?: number, y?: number, width?: number, height?: number): this
+            clearColor(fillStyle: string | CanvasGradient | CanvasPattern, x?: number, y?: number, width?: number, height?: number): this
             beginPath(): this
             closePath(): this
             moveTo(x: number, y: number): this
@@ -1835,8 +1834,8 @@ declare namespace phina {
             touchList: input.TouchList
             keyboard: input.Keyboard
             accelerometer: input.Accelerometer
-            pointer: input.Touch
-            pointers: input.Touch[]
+            pointer: Touch
+            pointers: Touch[]
         }
         interface DomAppStatic {
             new(options: DomAppOptions): DomApp
@@ -1845,8 +1844,6 @@ declare namespace phina {
         var DomApp: DomAppStatic
 
         interface CanvasAppOptions extends Partial<DomAppOptions> {
-            width?: number
-            height?: number
             append?: boolean
             fit?: boolean
             pixelated?: boolean
@@ -2040,8 +2037,8 @@ declare namespace phina {
             className: string
             label: string | number
             nextLabel: string | number
-            arguments?: {}
-            nextArguments?: {}
+            arguments: {}
+            nextArguments: {}
         }
         interface ManagerScene extends app.Scene {
             setScene(scenes: ManagerSceneData[]): this
@@ -2216,7 +2213,7 @@ declare global {
 
         most(func?: (elm: T, i: number, self: this) => T, self?: {}): { max: T, min: T }
     }
-    interface ArrayConstructor {
+    interface Arrayvarructor {
         range(range: number): number[]
         range(start: number, end: number, step?: number): number[]
         of(...args: any[]): any[]
