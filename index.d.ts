@@ -75,6 +75,7 @@ declare namespace phina {
             clone(): Vector2
             equals(v: Vector2): boolean
             set(x: number, y: number): this
+            add(v: Vector2): this
             sub(v: Vector2): this
             mul(n: number): this
             div(n: number): this
@@ -253,7 +254,7 @@ declare namespace phina {
             on(type: string, listener: Function): this
             off(type: string, listener: Function): this
             fire(e: { type: string }): this
-            flare(type: string, param: {}): this
+            flare(type: string, param?: {}): this
             one(type: string, listener: Function): this
             has(type: string): boolean
             clear(type: string): this
@@ -653,7 +654,7 @@ declare namespace phina {
             stop(): this
             pause(): this
             resume(): this
-            loadFromBuffer(buffer: AudioBuffer): this
+            loadFromBuffer(buffer?: AudioBuffer): this
             setLoop(loop: boolean): this
             setLoopStart(loopStart: number): this
             setLoopEnd(loopEnd: number): this
@@ -831,8 +832,8 @@ declare namespace phina {
         }
         var TouchList: TouchListStatic
 
-        type KeyType = keyof phina.input.KeyBoardStatic['KEY_CODE']
-        interface KeyBoard extends Input {
+        type KeyType = keyof phina.input.KeyboardStatic['KEY_CODE']
+        interface Keyboard extends Input {
             key: { [key: number]: boolean }
             press: { [key: number]: boolean }
             down: { [key: number]: boolean }
@@ -848,9 +849,9 @@ declare namespace phina {
             setKey(key: number | KeyType, flag: boolean): this
             clearKey(): this
         }
-        interface KeyBoardStatic {
-            new(domElement: HTMLElement): KeyBoard
-            (domElement: HTMLElement): KeyBoard
+        interface KeyboardStatic {
+            new(domElement: HTMLElement): Keyboard
+            (domElement: HTMLElement): Keyboard
 
             ARROW_BIT_TO_ANGLE_TABLE: {
                 0x01: number
@@ -998,7 +999,7 @@ declare namespace phina {
                 'space': number
             }
         }
-        var KeyBoard: KeyBoardStatic
+        var Keyboard: KeyboardStatic
 
         interface GamepadManager extends util.EventDispatcher {
             gamepads: { [key: number]: Gamepad }
@@ -1134,7 +1135,7 @@ declare namespace phina {
             children: Element[]
             awake: boolean
 
-            update?(app: display.DomApp): void
+            update?(): void
 
             addChild(child: Element): Element
             addChildTo(parent: Element): this
@@ -1260,7 +1261,6 @@ declare namespace phina {
     namespace accessory {
 
         interface Accessory extends util.EventDispatcher {
-            target?: app.Element
             setTarget(target: app.Element): this
             getTarget(): void | app.Element
             isAttached(): boolean
@@ -1390,8 +1390,8 @@ declare namespace phina {
             //accessors
             width: number
             height: number
-            fillStyle: number|CanvasGradient
-            strokeStyle: number
+            fillStyle: string | CanvasGradient | CanvasPattern
+            strokeStyle: string | CanvasGradient | CanvasPattern
             globalAlpha: number
             globalCompositeOperation: string
             shadowBlur: number
@@ -1409,9 +1409,9 @@ declare namespace phina {
 
             setSize(width: number, height: number): this
             setSizeToScreen(): void
-            fitScreen(isEver: boolean): void
-            clear(x: number, y: number, width: number, height: number): this
-            clearColor(fillStyle: string, x: number, y: number, width: number, height: number): this
+            fitScreen(isEver?: boolean): void
+            clear(x?: number, y?: number, width?: number, height?: number): this
+            clearColor(fillStyle: string | CanvasGradient | CanvasPattern, x?: number, y?: number, width?: number, height?: number): this
             beginPath(): this
             closePath(): this
             moveTo(x: number, y: number): this
@@ -1424,8 +1424,8 @@ declare namespace phina {
             drawPoint(x: number, y: number): this
             line(x0: number, y0: number, x1: number, y1: number): this
             drawLine(x0: number, y0: number, x1: number, y1: number): this
-            drawDashLine(x0: number, y0: number, x1: number, y1: number, pattern: string | number): this
-            drawArrow(x0: number, y0: number, x1: number, y1: number, arrowRadius: number): this
+            drawDashLine(x0: number, y0: number, x1: number, y1: number, pattern?: string | number): this
+            drawArrow(x0: number, y0: number, x1: number, y1: number, arrowRadius?: number): this
             lines(...points: number[]): this
             strokeLines(x0: number, y0: number, x1: number, y1: number): this
             fillLines(...points: number[]): this
@@ -1442,15 +1442,15 @@ declare namespace phina {
             fillArc(x: number, y: number, startAngle: number, setAngle: number, anticlockwise: boolean): this
             strokeArc(x: number, y: number, startAngle: number, setAngle: number, anticlockwise: boolean): this
             pie(x: number, y: number, startAngle: number, setAngle: number, anticlockwise: boolean): this
-            polygon(x: number, y: number, size: number, offsetAngle: number): this
-            fillPolygon(x: number, y: number, size: number, offsetAngle: number): this
-            strokePolygon(x: number, y: number, size: number, offsetAngle: number): this
-            star(x: number, y: number, radius: number, sides: number, sideIndent: number, offsetAngle: number): this
-            fillStar(x: number, y: number, radius: number, sides: number, sideIndent: number, offsetAngle: number): this
-            strokeStar(x: number, y: number, radius: number, sides: number, sideIndent: number, offsetAngle: number): this
-            heart(x: number, y: number, radius: number, angle: number): this
-            fillHeart(x: number, y: number, radius: number, angle: number): this
-            strokeHeart(x: number, y: number, radius: number, angle: number): this
+            polygon(x: number, y: number, size: number, offsetAngle?: number): this
+            fillPolygon(x: number, y: number, size: number, offsetAngle?: number): this
+            strokePolygon(x: number, y: number, size: number, offsetAngle?: number): this
+            star(x?: number, y?: number, radius?: number, sides?: number, sideIndent?: number, offsetAngle?: number): this
+            fillStar(x?: number, y?: number, radius?: number, sides?: number, sideIndent?: number, offsetAngle?: number): this
+            strokeStar(x?: number, y?: number, radius?: number, sides?: number, sideIndent?: number, offsetAngle?: number): this
+            heart(x: number, y: number, radius: number, angle?: number): this
+            fillHeart(x: number, y: number, radius: number, angle?: number): this
+            strokeHeart(x: number, y: number, radius: number, angle?: number): this
             ellipse(x: number, y: number, w: number, h: number): this
             fillEllipse(x: number, y: number, w: number, h: number): this
             strokeEllipse(x: number, y: number, w: number, h: number): this
@@ -1467,7 +1467,7 @@ declare namespace phina {
             scale(scaleX: number, scaleY: number): this
             save(): this
             restore(): this
-            saveAsImage(mime_type: string): this
+            saveAsImage(mime_type?: string): this
         }
         interface CanvasStatic {
             new(canvas?: string | HTMLCanvasElement): Canvas
@@ -1832,10 +1832,10 @@ declare namespace phina {
             mouse: input.Mouse
             touch: input.Touch
             touchList: input.TouchList
-            keyboard: input.KeyBoard
+            keyboard: input.Keyboard
             accelerometer: input.Accelerometer
-            pointer: input.Touch
-            pointers: input.Touch[]
+            pointer: Touch
+            pointers: Touch[]
         }
         interface DomAppStatic {
             new(options: DomAppOptions): DomApp
@@ -1844,8 +1844,6 @@ declare namespace phina {
         var DomApp: DomAppStatic
 
         interface CanvasAppOptions extends Partial<DomAppOptions> {
-            width?: number
-            height?: number
             append?: boolean
             fit?: boolean
             pixelated?: boolean
@@ -2039,8 +2037,8 @@ declare namespace phina {
             className: string
             label: string | number
             nextLabel: string | number
-            arguments?: {}
-            nextArguments?: {}
+            arguments: {}
+            nextArguments: {}
         }
         interface ManagerScene extends app.Scene {
             setScene(scenes: ManagerSceneData[]): this
@@ -2215,7 +2213,7 @@ declare global {
 
         most(func?: (elm: T, i: number, self: this) => T, self?: {}): { max: T, min: T }
     }
-    interface ArrayConstructor {
+    interface Arrayvarructor {
         range(range: number): number[]
         range(start: number, end: number, step?: number): number[]
         of(...args: any[]): any[]
