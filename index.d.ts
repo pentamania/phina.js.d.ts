@@ -1518,7 +1518,7 @@ declare namespace phina {
             width?: number
             height?: number
             padding?: number
-            backgroundColor?: string
+            backgroundColor?: string | CanvasGradient | CanvasPattern
             fill?: string
             stroke?: string
             strokeWidth?: number
@@ -1527,7 +1527,7 @@ declare namespace phina {
         }
         interface Shape extends PlainElement {
             padding: number
-            backgroundColor: string
+            backgroundColor: string | CanvasGradient | CanvasPattern
             fill: string
             stroke: string
             strokeWidth: number
@@ -1556,7 +1556,7 @@ declare namespace phina {
         var Shape: ShapeStatic
 
         interface RectangleShapeOptions extends Partial<ShapeOptions> {
-            backgroundColor?: string
+            backgroundColor?: string | CanvasGradient | CanvasPattern
             fill?: string
             stroke?: string
             strokeWidth?: number
@@ -1572,7 +1572,7 @@ declare namespace phina {
         var RectangleShape: RectangleShapeStatic
 
         interface CircleShapeOptions extends Partial<ShapeOptions> {
-            backgroundColor?: string
+            backgroundColor?: string | CanvasGradient | CanvasPattern
             fill?: string
             stroke?: string
             strokeWidth?: number
@@ -1588,7 +1588,7 @@ declare namespace phina {
         var CircleShape: CircleShapeStatic
 
         interface TriangleShapeOptions extends Partial<ShapeOptions> {
-            backgroundColor?: string
+            backgroundColor?: string | CanvasGradient | CanvasPattern
             fill?: string
             stroke?: string
             strokeWidth?: number
@@ -1604,7 +1604,7 @@ declare namespace phina {
         var TriangleShape: TriangleShapeStatic
 
         interface StarShapeOptions extends Partial<ShapeOptions> {
-            backgroundColor?: string
+            backgroundColor?: string | CanvasGradient | CanvasPattern
             fill?: string
             stroke?: string
             strokeWidth?: number
@@ -1622,7 +1622,7 @@ declare namespace phina {
         var StarShape: StarShapeStatic
 
         interface PolygonShapeOptions extends Partial<ShapeOptions> {
-            backgroundColor?: string
+            backgroundColor?: string | CanvasGradient | CanvasPattern
             fill?: string
             stroke?: string
             strokeWidth?: number
@@ -1639,7 +1639,7 @@ declare namespace phina {
         var PolygonShape: PolygonShapeStatic
 
         interface HeartShapeOptions extends Partial<ShapeOptions> {
-            backgroundColor?: string
+            backgroundColor?: string | CanvasGradient | CanvasPattern
             fill?: string
             stroke?: string
             strokeWidth?: number
@@ -1679,7 +1679,7 @@ declare namespace phina {
 
             defaults: {
                 fill: boolean
-                backgroundColor: string
+                backgroundColor: string | CanvasGradient | CanvasPattern
                 lineCap: string
                 lineJoin: string
             }
@@ -1711,7 +1711,7 @@ declare namespace phina {
         var Sprite: SpriteStatic
 
         interface LabelOptions extends Partial<ShapeOptions> {
-            backgroundColor?: string
+            backgroundColor?: string | CanvasGradient | CanvasPattern
             fill?: string
             stroke?: string
             strokeWidth?: number
@@ -1741,7 +1741,7 @@ declare namespace phina {
             (text?: string): Label
 
             defaults: {
-                backgroundColor: string
+                backgroundColor: string | CanvasGradient | CanvasPattern
                 fill: string
                 stroke: null
                 strokeWidth: number
@@ -1759,7 +1759,7 @@ declare namespace phina {
         interface DisplaySceneParams {
             width?: number
             height?: number
-            backgroundColor?: string
+            backgroundColor?: string | CanvasGradient | CanvasPattern
         }
         interface DisplayScene extends app.Scene {
             hitTest(): boolean
@@ -1770,7 +1770,7 @@ declare namespace phina {
 
             canvas: graphics.Canvas
             renderer: CanvasRenderer
-            backgroundColor: string
+            backgroundColor: string | CanvasGradient | CanvasPattern
             width: number
             height: number
             gridX: util.Grid
@@ -1923,7 +1923,7 @@ declare namespace phina {
             defaults: {
                 width: number
                 height: number
-                backgroundColor: string
+                backgroundColor: string | CanvasGradient | CanvasPattern
                 fill: string
                 stroke: null
 
