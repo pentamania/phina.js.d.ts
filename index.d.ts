@@ -571,8 +571,8 @@ declare namespace phina {
                 sound: { [key: string]: Asset }
                 spritesheet: { [key: string]: Asset }
             }
-            get(type: string, key: string): Asset
-            set(type: string, key: string, asset: Asset): void
+            get(type: string, key: string): any
+            set(type: string, key: string, asset: any): void
             contains(type: string, key: string): void //TODO?
         }
         var AssetManager: AssetManagerStatic
