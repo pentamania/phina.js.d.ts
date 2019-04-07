@@ -1391,8 +1391,8 @@ declare namespace phina {
             //accessors
             width: number
             height: number
-            fillStyle: number
-            strokeStyle: number
+            fillStyle: string | CanvasGradient | CanvasPattern
+            strokeStyle: string | CanvasGradient | CanvasPattern
             globalAlpha: number
             globalCompositeOperation: string
             shadowBlur: number
@@ -1412,7 +1412,7 @@ declare namespace phina {
             setSizeToScreen(): void
             fitScreen(isEver?: boolean): void
             clear(x?: number, y?: number, width?: number, height?: number): this
-            clearColor(fillStyle: string, x?: number, y?: number, width?: number, height?: number): this
+            clearColor(fillStyle: string | CanvasGradient | CanvasPattern, x?: number, y?: number, width?: number, height?: number): this
             beginPath(): this
             closePath(): this
             moveTo(x: number, y: number): this
