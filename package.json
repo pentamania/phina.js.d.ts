@@ -1,7 +1,6 @@
 {
   "name": "phina.js.d.ts",
   "version": "0.0.1",
-  "private": true,
   "description": "unofficial type definitions for phina.js",
   "main": "",
   "keywords": [
